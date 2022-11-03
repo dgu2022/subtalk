@@ -29,6 +29,8 @@ def matching(request):
     jsonData = requestData.json()
 
     stationName = jsonData.get("statnNm")
+    if(type(stationName) == "NoneType"):
+        return render(request, 'subwayapp/post_list.html', {'arriveTimeSec': "결과가 없습니다"})
 
     requestUrl = "http://swopenAPI.seoul.go.kr/api/subway/" + \
                   secret_key + "/" + fileType + "/realtimePosition/" + \
