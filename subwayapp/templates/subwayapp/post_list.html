@@ -1,22 +1,20 @@
-<html>
-    <head>
-        <title>Django Girls blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="">Django Girls Blog</a></h1>
-        </div>
+{% extends 'subwayapp/base.html' %}
 
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My first post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        </div>
+{% block content %}
+    <h1>입력해라!</h1>
+    <form action="{% url 'matching'%}" method="POST">
+        {% csrf_token %}
+        <input name="subwayLineNumber" placeholder="호선"/>
+        <br/>
+        <input name="trainNumber" placeholder="열차번호"/>
+        <br/>
+        <input name="getOffStationName" placeholder="내리는 역"/>
+        <br/>
+        <input name="userNickname" placeholder="별명"/>
+        <br/>
+        <br/>
+        <button type="submit">체크하기</button>
+    </form>
 
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My second post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-        </div>
-    </body>
-</html>
+    <h1>{{ arriveTimeSec }}</h1>
+{% endblock %}
